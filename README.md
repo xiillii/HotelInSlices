@@ -3,7 +3,8 @@
 ## Create the project Core.Domain
 
 ```powershell
-
+dotnet new globaljson --sdk-version 7.0.0
+# add "rollForward": "latestFeature" to the json file
 md src
 cd src
 md core
@@ -49,16 +50,44 @@ dotnet sln add .\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
    - `Exceptions\NotFoundException.cs`
    - `Exceptions\OccupiedRoomException.cs`
    - `Exceptions\VacantRoomException.cs`
-1. Create the Features
-   - Room
-     - Queries
-       - `Features\Room\Queries\GetAvailableRooms\RoomDto.cs`
-       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQuery.cs`
-       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQueryHandler.cs`
 1. Create the Persistence classes
    - `Contracts\Persistence\IGenericRepository.cs`
    - `Contracts\Persistence\IRoomRepository.cs`
 1. Create the Features
    - Room
+     - Queries
+       - `Features\Room\Queries\GetAvailableRooms\RoomDto.cs`
+       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQuery.cs`
+1. Create the Mapper Profile
+
+   - `MappingProfiles\RoomProfile.cs`
+
+1. Create the Features
+   - Room
+     - Queries
+       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQueryHandler.cs`
+1. Create the test for the previous handler. See [Unit Tests](#tests)
+1. Create the Features
+   - Room
      - Commands
    - Room Administration
+
+# Tests
+
+## Create the Unit Tests Project
+
+```powershell
+md tests
+cd tests
+dotnet new xunit -n Hotel.Core.Application.Tests
+cd .\Hotel.Core.Application.Tests\
+dotnet add package Moq
+dotnet add package Shouldly
+dotnet add reference ..\..\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
+cd ..\..
+dotnet sln add .\tests\Hotel.Core.Application.Tests\Hotel.Core.Application.Tests.csproj
+```
+
+## Add the Mocks
+
+- `Mocks\MockRoomRepository.cs`
