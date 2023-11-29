@@ -1,6 +1,6 @@
 # Slices workshop. The Hotel Project
 
-## Create the project Core.Domain
+##  Create the project Core.Domain
 
 ```powershell
 dotnet new globaljson --sdk-version 7.0.0
@@ -56,8 +56,9 @@ dotnet sln add .\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
 1. Create the Features
    - Room
      - Queries
-       - `Features\Room\Queries\GetAvailableRooms\RoomDto.cs`
-       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQuery.cs`
+       - GetAvailableRooms
+         - `Features\Room\Queries\GetAvailableRooms\RoomDto.cs`
+         - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQuery.cs`
 1. Create the Mapper Profile
 
    - `MappingProfiles\RoomProfile.cs`
@@ -65,7 +66,17 @@ dotnet sln add .\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
 1. Create the Features
    - Room
      - Queries
-       - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQueryHandler.cs`
+       - GetAvailableRooms
+         - `Features\Room\Queries\GetAvailableRooms\GetAvailableRoomQueryHandler.cs`
+1. Create the test for the previous handler. See [Unit Tests](#tests)
+1. Continue the Room Feature
+   - Room
+     - Queries
+       - GetRoomDetails
+         - `Features\Room\Queries\GetRoomDetails\RoomDetailsDto.cs`
+         - Add the Mapper Profile for the previous DTO.
+         - `Features\Room\Queries\GetRoomDetails\GetRoomDetailsQuery.cs`
+         - `Features\Room\Queries\GetRoomDetails\GetRoomDetailsQueryHandler.cs`
 1. Create the test for the previous handler. See [Unit Tests](#tests)
 1. Create the Features
    - Room
@@ -91,3 +102,8 @@ dotnet sln add .\tests\Hotel.Core.Application.Tests\Hotel.Core.Application.Tests
 ## Add the Mocks
 
 - `Mocks\MockRoomRepository.cs`
+
+## Add Room Feature Unit Tests
+
+- `Features\Room\Queries\GetAvailableRoomQueryHandlerTests.cs`
+- `Features\Room\Queries\GetRoomDetailsQueryHandlerTests.cs`
