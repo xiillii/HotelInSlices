@@ -113,7 +113,14 @@ dotnet sln add .\src\infrastructure\Hotel.Infrastructure.Persistence\Hotel.Infra
 
 ```
 
-### Create the Application classes
+### Create the Persistence classes
+
+1. `DatabaseContext\EFDatabaseContext.cs`
+1. `Repositories\GenericRepositoryImpl.cs`
+1. `Repositories\RoomRepositoryImpl.cs`
+1. `Repositories\CheckInRepositoryImpl.cs`
+1. `Repositories\CheckOutRepositoryImpl.cs`
+1. Create the class `PersistanceServiceRegistration.cs`
 
 # Tests
 
