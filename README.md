@@ -94,7 +94,26 @@ dotnet sln add .\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
        - `Features\Administration\Commands\CheckIn\CheckInCommand.cs` and its mapper profile
        - `Features\Administration\Commands\CheckIn\CheckInCommandValidator.cs`
        - `Features\Administration\Commands\CheckIn\CheckInCommandHandler.cs`
-1. Create the Unit Test. See [Unit Tests](#tests)
+
+## Create the project Infrastructure.Persistence
+
+```powershell
+# go to the solution root folder
+cd src
+md infrastructure
+cd infrastructure
+dotnet new classlib -n Hotel.Infrastructure.Persistence
+cd .\Hotel.Infrastructure.Persistence
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.14
+dotnet add package Microsoft.Extensions.Options.ConfigurationExtensions
+dotnet add reference ../../core/Hotel.Core.Domain/Hotel.Core.Domain.csproj
+dotnet add reference ../../core/Hotel.Core.Application/Hotel.Core.Application.csproj
+cd ..\..\..
+dotnet sln add .\src\infrastructure\Hotel.Infrastructure.Persistence\Hotel.Infrastructure.Persistence.csproj
+
+```
+
+### Create the Application classes
 
 # Tests
 
