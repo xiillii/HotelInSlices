@@ -15,13 +15,14 @@ public class GetRoomDetailsQueryHandlerTests
 
     public GetRoomDetailsQueryHandlerTests()
     {
-        _mockRepo = MockRoomRepository.GetMockRoomRepository();
+        _mockRepo = MockRoomRepository.GetMockRepository();
         var mapperConfig = new MapperConfiguration(c => c.AddProfile<RoomProfile>());
-        _mapper = mapperConfig.CreateMapper();        
+        _mapper = mapperConfig.CreateMapper();
     }
 
     [Fact]
-    public async Task GetRoomDetailsTest(){
+    public async Task GetRoomDetailsTest()
+    {
         // arrange
         var handler = new GetRoomDetailsQueryHandler(_mapper, _mockRepo.Object);
 
@@ -35,7 +36,8 @@ public class GetRoomDetailsQueryHandlerTests
     }
 
     [Fact]
-    public void GetRoomDetailsNotFoundTest(){
+    public void GetRoomDetailsNotFoundTest()
+    {
         // arrange
         var handler = new GetRoomDetailsQueryHandler(_mapper, _mockRepo.Object);
 

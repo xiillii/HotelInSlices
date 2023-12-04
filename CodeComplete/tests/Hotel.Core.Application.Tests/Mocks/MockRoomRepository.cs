@@ -6,7 +6,7 @@ namespace Hotel.Core.Application.Tests.Mocks;
 
 public class MockRoomRepository
 {
-  public static Mock<IRoomRepository> GetMockRoomRepository()
+  public static Mock<IRoomRepository> GetMockRepository()
   {
     var rooms = new List<Room>
     {
@@ -54,14 +54,31 @@ public class MockRoomRepository
     //mockRepo.Setup(r => r.GetAsync(false)).ReturnsAsync(rooms);
     mockRepo.Setup(r => r.GetAsync(It.IsAny<bool>())).Returns(async (bool onlyActive) =>
     {
-      if (onlyActive){
+      if (onlyActive)
+      {
         return await Task.FromResult(rooms.Where(r => r.Vacant).ToList());
       }
       return await Task.FromResult(rooms);
-    }); 
+    });
     mockRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>())).Returns((int id) =>
     {
-        return Task.FromResult(rooms.Find(r => r.Id == id));
+      return Task.FromResult(rooms.Find(r => r.Id == id));
+    });
+
+    mockRepo.Setup(r => r.IsRoomUnique(It.IsAny<string>())).Returns((string name) =>
+    {
+      var item = rooms.Find(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+
+      return Task.FromResult(item == null);
+    });
+
+    mockRepo.Setup(r => r.CreateAsync(It.IsAny<Room>())).Returns((Room room) =>
+    {
+      var id = rooms.OrderBy(r => r.Id).First().Id + 1;
+      room.Id = id;
+      rooms.Add(room);
+
+      return Task.CompletedTask;
     });
 
     return mockRepo;

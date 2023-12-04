@@ -15,13 +15,14 @@ public class GetAvailableRoomQueryHandlerTests
 
     public GetAvailableRoomQueryHandlerTests()
     {
-        _mockRepo = MockRoomRepository.GetMockRoomRepository();
+        _mockRepo = MockRoomRepository.GetMockRepository();
         var mapperConfig = new MapperConfiguration(c => c.AddProfile<RoomProfile>());
-        _mapper = mapperConfig.CreateMapper();        
+        _mapper = mapperConfig.CreateMapper();
     }
 
     [Fact]
-    public async Task GetAvailableRoomsTest(){
+    public async Task GetAvailableRoomsTest()
+    {
         // arrange
         var handler = new GetAvailableRoomQueryHandler(_mapper, _mockRepo.Object);
 

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Hotel.Core.Application.Features.Room.Commands.CreateRoom;
 using Hotel.Core.Application.Features.Room.Queries.GetAvailableRooms;
 using Hotel.Core.Application.Features.Room.Queries.GetRoomDetails;
 using Hotel.Core.Domain;
@@ -11,5 +12,7 @@ public class RoomProfile : Profile
   {
     CreateMap<RoomDto, Room>().ReverseMap();
     CreateMap<Room, RoomDetailsDto>();
+
+    CreateMap<CreateRoomCommand, Room>();
   }
 }

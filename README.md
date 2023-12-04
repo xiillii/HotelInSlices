@@ -1,6 +1,6 @@
-# Slices workshop. The Hotel Project
+# Slices workshop. The Hotel Project. Step by Step
 
-##  Create the project Core.Domain
+## Create the project Core.Domain
 
 ```powershell
 dotnet new globaljson --sdk-version 7.0.0
@@ -81,7 +81,20 @@ dotnet sln add .\src\core\Hotel.Core.Application\Hotel.Core.Application.csproj
 1. Create the Features
    - Room
      - Commands
-   - Room Administration
+       - `Features\Room\Commands\CreateRoom\CreateRoomCommand.cs` and its mapper profile
+       - `Features\Room\Commands\CreateRoom\CreateRoomCommandValidator.cs`
+       - `Features\Room\Commands\CreateRoom\CreateRoomCommandHandler.cs`
+1. Create the Unit Test. See [Unit Tests](#tests)
+1. Create the Persistence classes
+   - `Contracts\Persistence\ICheckInRepository.cs`
+   - `Contracts\Persistence\ICheckOutRepository.cs`
+1. Create the Room Administration Feature
+   - Administration
+     - Commands
+       - `Features\Administration\Commands\CheckIn\CheckInCommand.cs` and its mapper profile
+       - `Features\Administration\Commands\CheckIn\CheckInCommandValidator.cs`
+       - `Features\Administration\Commands\CheckIn\CheckInCommandHandler.cs`
+1. Create the Unit Test. See [Unit Tests](#tests)
 
 # Tests
 
@@ -107,3 +120,4 @@ dotnet sln add .\tests\Hotel.Core.Application.Tests\Hotel.Core.Application.Tests
 
 - `Features\Room\Queries\GetAvailableRoomQueryHandlerTests.cs`
 - `Features\Room\Queries\GetRoomDetailsQueryHandlerTests.cs`
+- `Features\Room\Commads\CreateRoomCommandHandlerTests.cs`
