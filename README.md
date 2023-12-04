@@ -120,6 +120,8 @@ dotnet sln add .\src\infrastructure\Hotel.Infrastructure.Persistence\Hotel.Infra
 1. `Repositories\RoomRepositoryImpl.cs`
 1. `Repositories\CheckInRepositoryImpl.cs`
 1. `Repositories\CheckOutRepositoryImpl.cs`
+1. `Configurations\RoomConfiguration.cs`
+1. `Configurations\CheckInConfiguration.cs`
 1. Create the class `PersistanceServiceRegistration.cs`
 
 # Tests
