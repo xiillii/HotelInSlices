@@ -17,7 +17,7 @@ public class RoomRepositoryImpl : GenericRepositoryImpl<Room>, IRoomRepository
     {
       return await _context.Set<Room>()
                 .AsNoTracking()
-                .Where(r => !r.Vacant)
+                .Where(r => r.Vacant)
                 .ToListAsync();
     }
     return await base.GetAsync(false);
@@ -25,10 +25,14 @@ public class RoomRepositoryImpl : GenericRepositoryImpl<Room>, IRoomRepository
   public async Task<bool> IsRoomUnique(string name)
   {
     var notUnique = await _context.Rooms
-                                  .AnyAsync(r => r.Name!.Equals(
-                                      name,
-                                      StringComparison.InvariantCultureIgnoreCase));
+                                  .AnyAsync(r => r.Name! == name);
 
     return !notUnique;
+  }
+
+  public override Task CreateAsync(Room entity)
+  {
+    entity.Vacant = true;
+    return base.CreateAsync(entity);
   }
 }

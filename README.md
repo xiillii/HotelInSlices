@@ -124,6 +124,47 @@ dotnet sln add .\src\infrastructure\Hotel.Infrastructure.Persistence\Hotel.Infra
 1. `Configurations\CheckInConfiguration.cs`
 1. Create the class `PersistanceServiceRegistration.cs`
 
+## Create the project Api
+
+```powershell
+# go to the solution root folder
+cd src
+md api
+cd api
+dotnet new webapi -n Hotel.Api
+cd .\Hotel.Api
+dotnet add package MediatR
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.14
+dotnet add reference ../../core/Hotel.Core.Application/Hotel.Core.Application.csproj
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.14
+dotnet add reference ../../infrastructure/Hotel.Infrastructure.Persistence/Hotel.Infrastructure.Persistence.csproj
+cd ..\..\..
+dotnet sln add .\src\api\Hotel.Api\Hotel.Api.csproj
+dotnet dev-certs https --trust
+dotnet tool install --global dotnet-ef
+
+```
+
+### Create the Api classes
+
+1. Add the services to `Program.cs` and configure CORS
+1. Configure the database connection string
+1. Add the controller `Models\CustomProblemDetails.cs`
+1. Add the controller `Controllers\RoomsController.cs`
+1. `Middleware\ExceptionMiddleware.cs`
+
+### Do Migrations and RUN
+
+1. Execute:
+
+```
+cd src\api\Hotel.Api
+dotnet ef migrations add InitialCreate -p ..\..\infrastructure\Hotel.Infrastructure.Persistence\Hotel.Infrastructure.Persistence.csproj
+dotnet ef database update
+
+dotnet run --launch-profile https
+```
+
 # Tests
 
 ## Create the Unit Tests Project
